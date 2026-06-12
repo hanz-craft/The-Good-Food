@@ -1,82 +1,82 @@
 const foodData = [
     { name: "Apple", emoji: "🍎", healthy: true },
-    { name: "Candy", emoji: "🍬", healthy: false },
-    { name: "Broccoli", emoji: "🥦", healthy: true },
-    { name: "Chips", emoji: "🍟", healthy: false },
     { name: "Banana", emoji: "🍌", healthy: true },
-    { name: "Soda", emoji: "🥤", healthy: false },
     { name: "Carrot", emoji: "🥕", healthy: true },
-    { name: "Chocolate", emoji: "🍫", healthy: false },
-    { name: "Fish", emoji: "🐟", healthy: true },
-    { name: "Cake", emoji: "🎂", healthy: false },
+    { name: "Broccoli", emoji: "🥦", healthy: true },
+    { name: "Candy", emoji: "🍬", healthy: false },
+    { name: "Chips", emoji: "🍟", healthy: false },
     { name: "Milk", emoji: "🥛", healthy: true },
-    { name: "Water", emoji: "💧", healthy: true },
-    { name: "Rice", emoji: "🍚", healthy: true },
+    { name: "Soda", emoji: "🥤", healthy: false },
     { name: "Egg", emoji: "🥚", healthy: true },
-    { name: "Mango", emoji: "🥭", healthy: true }
+    { name: "Fish", emoji: "🐟", healthy: true }
 ];
 
-// Logic State
-let shuffledFood = [...foodData].sort(() => Math.random() - 0.5);
-let currentIndex = 0;
+const vocabList = document.getElementById('vocab-list');
+const previewEmoji = document.getElementById('preview-emoji');
+const previewName = document.getElementById('preview-name');
+const repeatBtn = document.getElementById('repeat-audio');
+const startBtn = document.getElementById('start-game-btn');
+
 let score = 0;
+let gameIndex = 0;
 
-// DOM Elements
-const vocabSection = document.getElementById("vocab-section");
-const gameSection = document.getElementById("game-section");
-const startBtn = document.getElementById("start-game-btn");
-
-const foodEmoji = document.getElementById("food-emoji");
-const foodName = document.getElementById("food-name");
-const scoreEl = document.getElementById("score");
-const feedback = document.getElementById("feedback-message");
-const btnGood = document.getElementById("btn-good");
-const btnJunk = document.getElementById("btn-junk");
-const endScreen = document.getElementById("end-screen");
-const finalScore = document.getElementById("final-score");
-
-// Start Game Switcher
-startBtn.addEventListener("click", () => {
-    vocabSection.classList.add("hidden");
-    gameSection.classList.remove("hidden");
-    showItem();
+// Initialize Vocab List
+foodData.forEach(food => {
+    const item = document.createElement('div');
+    item.className = 'vocab-item';
+    item.innerHTML = `<span>${food.emoji}</span> ${food.name}`;
+    item.onclick = () => showFood(food);
+    vocabList.appendChild(item);
 });
 
+// Show Food in Preview
+function showFood(food) {
+    previewEmoji.innerText = food.emoji;
+    previewName.innerText = food.name;
+    document.getElementById('display-card').classList.remove('pop-animation');
+    void document.getElementById('display-card').offsetWidth; // Trigger reflow
+    document.getElementById('display-card').classList.add('pop-animation');
+    speak(food.name);
+}
+
+// Speak Word
+function speak(word) {
+    const utterance = new SpeechSynthesisUtterance(word);
+    utterance.rate = 0.9;
+    window.speechSynthesis.speak(utterance);
+}
+
+repeatBtn.onclick = () => speak(previewName.innerText);
+
 // Game Logic
-function showItem() {
-    if (currentIndex < shuffledFood.length) {
-        const item = shuffledFood[currentIndex];
-        foodEmoji.innerText = item.emoji;
-        foodName.innerText = item.name;
+startBtn.onclick = () => {
+    document.getElementById('vocab-section').classList.add('hidden');
+    document.getElementById('game-section').classList.remove('hidden');
+    loadGameItem();
+};
+
+function loadGameItem() {
+    if (gameIndex < foodData.length) {
+        document.getElementById('game-emoji').innerText = foodData[gameIndex].emoji;
+        document.getElementById('game-name').innerText = foodData[gameIndex].name;
     } else {
-        gameSection.classList.add("hidden");
-        endScreen.classList.remove("hidden");
-        finalScore.innerText = score;
+        alert("Game Over! Score: " + score);
+        location.reload();
     }
 }
 
-function checkAnswer(isHealthyChoice) {
-    btnGood.disabled = true;
-    btnJunk.disabled = true;
-    
-    if (shuffledFood[currentIndex].healthy === isHealthyChoice) {
+function checkAnswer(choice) {
+    if (foodData[gameIndex].healthy === choice) {
         score++;
-        scoreEl.innerText = score;
-        feedback.innerText = "🎉 Great Job!";
-        feedback.style.color = "#4CAF50";
+        document.getElementById('score').innerText = score;
+        document.getElementById('feedback').innerText = "🎉 Great Job!";
     } else {
-        feedback.innerText = "✨ Try again!";
-        feedback.style.color = "#F44336";
+        document.getElementById('feedback').innerText = "✨ Try again next time!";
     }
-
+    
     setTimeout(() => {
-        currentIndex++;
-        feedback.innerText = "";
-        btnGood.disabled = false;
-        btnJunk.disabled = false;
-        showItem();
+        gameIndex++;
+        document.getElementById('feedback').innerText = "";
+        loadGameItem();
     }, 1000);
 }
-
-btnGood.addEventListener("click", () => checkAnswer(true));
-btnJunk.addEventListener("click", () => checkAnswer(false));
