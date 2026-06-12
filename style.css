@@ -1,0 +1,60 @@
+body {
+    font-family: Arial;
+    text-align: center;
+    margin: 0;
+    background: linear-gradient(to right, #ffeaa7, #a29bfe);
+}
+
+.container {
+    padding: 20px;
+}
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.card-box {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 200px;
+    border-radius: 20px;
+}
+
+.emoji {
+    font-size: 60px;
+}
+
+button {
+    padding: 15px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+#healthy-btn {
+    background: #55efc4;
+}
+
+#junk-btn {
+    background: #ff7675;
+}
