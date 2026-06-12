@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthy Food Hero</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- VOCABULARY SCREEN -->
+    <div id="vocab-screen" class="screen active">
+        <h1>🍎 Vocabulary Review</h1>
+        <p>Click the food and learn the word</p>
+
+        <div id="vocab-list" class="grid"></div>
+
+        <button id="start-btn">🎮 Start Game</button>
+    </div>
+
+    <!-- GAME SCREEN -->
+    <div id="game-screen" class="screen">
+        <h1>🌟 Healthy Food Hero</h1>
+
+        <div class="score">⭐ Score: <span id="score">0</span></div>
+
+        <div class="card">
+            <div id="food-emoji" class="emoji">🍎</div>
+            <div id="food-name">Apple</div>
+        </div>
+
+        <div class="buttons">
+            <button id="healthy-btn">🟢 Healthy</button>
+            <button id="junk-btn">🔴 Junk</button>
+        </div>
+
+        <p id="feedback"></p>
+    </div>
+
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
