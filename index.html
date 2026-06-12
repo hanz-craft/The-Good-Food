@@ -3,174 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Good Food • Teacher Hanziey</title>
-    <link rel="stylesheet" href="good-food.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <title>Good Food Sorting Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav class="food-nav">
-        <div class="food-nav-container">
-            <a href="index.html" class="back-hub-btn">🏡 Hub Home</a>
-            <div class="food-nav-links">
-                <a href="#vocabulary" class="nav-item green-item">🍎 Words</a>
-                <a href="#game" class="nav-item yellow-item">🎮 Play Game</a>
-                <a href="#worksheet" class="nav-item blue-item">📝 Worksheet</a>
+    <div class="game-container">
+        <!-- Header -->
+        <header>
+            <h1>Good Food Sorting Game</h1>
+            <div id="score-board">⭐ Score: <span id="score">0</span></div>
+        </header>
+
+        <!-- Game Area -->
+        <div id="game-area">
+            <div id="display-card">
+                <div id="food-emoji">🍎</div>
+                <h2 id="food-name">Apple</h2>
             </div>
-        </div>
-    </nav>
-
-    <header class="food-hero">
-        <div class="hero-bg-elements"></div>
-        <div class="food-hero-container">
-            <div class="character-badge">☀️ Yum Yum Time!</div>
-            <h1>The Good Food 🥗</h1>
-            <p>Let's grow strong, healthy, and happy! Explore yummy vocabulary, play the sorting game, and complete your food star worksheet!</p>
-        </div>
-    </header>
-
-    <main class="food-main-content">
-
-        <section id="vocabulary" class="food-section">
-            <h2 class="section-heading text-green">✨ Yummy Word Bank ✨</h2>
-            <p class="section-subheading">Look at the pictures and practice saying the words out loud!</p>
             
-            <div class="vocab-grid">
-                <div class="vocab-card" data-word="apple"><div class="vocab-emoji">🍎</div><h3>Apple</h3></div>
-                <div class="vocab-card" data-word="banana"><div class="vocab-emoji">🍌</div><h3>Banana</h3></div>
-                <div class="vocab-card" data-word="orange"><div class="vocab-emoji">🍊</div><h3>Orange</h3></div>
-                <div class="vocab-card" data-word="mango"><div class="vocab-emoji">🥭</div><h3>Mango</h3></div>
-                <div class="vocab-card" data-word="grapes"><div class="vocab-emoji">🍇</div><h3>Grapes</h3></div>
-                <div class="vocab-card" data-word="watermelon"><div class="vocab-emoji">🍉</div><h3>Watermelon</h3></div>
-                
-                <div class="vocab-card" data-word="carrot"><div class="vocab-emoji">🥕</div><h3>Carrot</h3></div>
-                <div class="vocab-card" data-word="broccoli"><div class="vocab-emoji">🥦</div><h3>Broccoli</h3></div>
-                <div class="vocab-card" data-word="spinach"><div class="vocab-emoji">🥬</div><h3>Spinach</h3></div>
-                <div class="vocab-card" data-word="tomato"><div class="vocab-emoji">🍅</div><h3>Tomato</h3></div>
-                <div class="vocab-card" data-word="cucumber"><div class="vocab-emoji">🥒</div><h3>Cucumber</h3></div>
-                
-                <div class="vocab-card" data-word="egg"><div class="vocab-emoji">🥚</div><h3>Egg</h3></div>
-                <div class="vocab-card" data-word="milk"><div class="vocab-emoji">🥛</div><h3>Milk</h3></div>
-                <div class="vocab-card" data-word="cheese"><div class="vocab-emoji">🧀</div><h3>Cheese</h3></div>
-                <div class="vocab-card" data-word="fish"><div class="vocab-emoji">🐟</div><h3>Fish</h3></div>
-                <div class="vocab-card" data-word="chicken"><div class="vocab-emoji">🍗</div><h3>Chicken</h3></div>
-                
-                <div class="vocab-card" data-word="rice"><div class="vocab-emoji">🍚</div><h3>Rice</h3></div>
-                <div class="vocab-card" data-word="bread"><div class="vocab-emoji">🍞</div><h3>Bread</h3></div>
-                <div class="vocab-card" data-word="yogurt"><div class="vocab-emoji">🥣</div><h3>Yogurt</h3></div>
-                <div class="vocab-card" data-word="water"><div class="vocab-emoji">💧</div><h3>Water</h3></div>
+            <div id="feedback-message"></div>
+
+            <div class="choice-buttons">
+                <button id="btn-good" class="choice-btn good">🟢 GOOD FOOD</button>
+                <button id="btn-junk" class="choice-btn junk">🔴 JUNK FOOD</button>
             </div>
-        </section>
+        </div>
 
-        <section id="game" class="food-section">
-            <div class="game-wrapper">
-                <h2 class="section-heading text-yellow">🎮 Good Food Sorting Game 🎮</h2>
-                <p class="section-subheading">Help your body grow strong! Is the food on the screen Healthy or Junk Food?</p>
-                
-                <div class="score-board">
-                    <span>⭐ Stars: <strong id="game-score">0</strong></span>
-                    <span id="game-feedback" class="feedback-text">Click a basket to sort!</span>
-                </div>
+        <!-- End Screen -->
+        <div id="end-screen" class="hidden">
+            <h2>Game Finished!</h2>
+            <p>Your Final Score: <span id="final-score">0</span></p>
+            <button onclick="location.reload()" class="restart-btn">Play Again</button>
+        </div>
+    </div>
 
-                <div class="game-arena">
-                    <div class="food-display-box">
-                        <div id="game-food-emoji" class="active-food-emoji">🍎</div>
-                        <h3 id="game-food-name" class="active-food-name">Apple</h3>
-                    </div>
-
-                    <div class="basket-buttons-container">
-                        <button id="btn-healthy" class="basket-btn basket-healthy">
-                            <span class="basket-icon">🟢</span>
-                            <div class="basket-label">Good Food</div>
-                            <span class="basket-subtext">(Healthy)</span>
-                        </button>
-                        
-                        <button id="btn-junk" class="basket-btn basket-junk">
-                            <span class="basket-icon">🔴</span>
-                            <div class="basket-label">Not So Healthy</div>
-                            <span class="basket-subtext">(Junk Food)</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="worksheet" class="food-section">
-            <h2 class="section-heading text-blue">📝 Worksheet: Circle the Good Food 📝</h2>
-            <p class="section-subheading">Click or tap on all the foods that are healthy and good for your body! Then click check work.</p>
-
-            <div class="worksheet-box">
-                <div class="worksheet-grid">
-                    <div class="worksheet-item" data-healthy="true">
-                        <div class="worksheet-circle-target">
-                            <span class="worksheet-emoji">🍎</span>
-                        </div>
-                        <h4>Apple</h4>
-                    </div>
-                    <div class="worksheet-item" data-healthy="false">
-                        <div class="worksheet-circle-target">
-                            <span class="worksheet-emoji">🍬</span>
-                        </div>
-                        <h4>Candy</h4>
-                    </div>
-                    <div class="worksheet-item" data-healthy="true">
-                        <div class="worksheet-circle-target">
-                            <span class="worksheet-emoji">🥕</span>
-                        </div>
-                        <h4>Carrot</h4>
-                    </div>
-                    <div class="worksheet-item" data-healthy="false">
-                        <div class="worksheet-circle-target">
-                            <span class="worksheet-emoji">🥤</span>
-                        </div>
-                        <h4>Soda</h4>
-                    </div>
-                    <div class="worksheet-item" data-healthy="true">
-                        <div class="worksheet-circle-target">
-                            <span class="worksheet-emoji">🐟</span>
-                        </div>
-                        <h4>Fish</h4>
-                    </div>
-                    <div class="worksheet-item" data-healthy="false">
-                        <div class="worksheet-circle-target">
-                            <span class="worksheet-emoji">🍟</span>
-                        </div>
-                        <h4>Chips</h4>
-                    </div>
-                    <div class="worksheet-item" data-healthy="true">
-                        <div class="worksheet-circle-target">
-                            <span class="worksheet-emoji">🍌</span>
-                        </div>
-                        <h4>Banana</h4>
-                    </div>
-                    <div class="worksheet-item" data-healthy="false">
-                        <div class="worksheet-circle-target">
-                            <span class="worksheet-emoji">🍫</span>
-                        </div>
-                        <h4>Chocolate</h4>
-                    </div>
-                </div>
-
-                <div class="worksheet-actions">
-                    <button id="btn-check-worksheet" class="btn btn-primary">Check My Answers! ✔️</button>
-                    <p id="worksheet-results" class="worksheet-score-text"></p>
-                </div>
-
-                <div class="bonus-drawing-box">
-                    <h3>🎨 Bonus Drawing Activity</h3>
-                    <p>Grab a piece of paper and your favorite crayons. <strong>Draw your favorite healthy food!</strong></p>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="food-footer">
-        <p>Teacher Hanziey's Learning Hub • Learn • Play • Create</p>
-    </footer>
-
-    <script src="good-food.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
