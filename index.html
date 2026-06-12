@@ -1,48 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Healthy Food Hero</title>
-<link rel="stylesheet" href="./style.css">
-<script src="./game.js"></script>
+    <meta charset="UTF-8">
+    <title>The Good Food</title>
 </head>
 
 <body>
 
-<div class="container">
+<h1>🥗 The Good Food</h1>
+<p>Choose if the food is GOOD FOOD or JUNK FOOD</p>
 
-    <!-- VOCABULARY SCREEN -->
-    <div id="vocab-screen" class="screen active">
-        <h1>🍎 Vocabulary Review</h1>
-        <p>Click the food and learn the word</p>
+<hr>
 
-        <div id="vocab-list" class="grid"></div>
+<h2>📚 Vocabulary Review</h2>
 
-        <button id="start-btn">🎮 Start Game</button>
-    </div>
+<p>🍎 Apple - Good Food</p>
+<p>🍌 Banana - Good Food</p>
+<p>🥕 Carrot - Good Food</p>
+<p>🥦 Broccoli - Good Food</p>
+<p>🥛 Milk - Good Food</p>
 
-    <!-- GAME SCREEN -->
-    <div id="game-screen" class="screen">
-        <h1>🌟 Healthy Food Hero</h1>
+<p>🍬 Candy - Junk Food</p>
+<p>🥤 Soda - Junk Food</p>
+<p>🍟 Chips - Junk Food</p>
+<p>🍫 Chocolate - Junk Food</p>
 
-        <div class="score">⭐ Score: <span id="score">0</span></div>
+<hr>
 
-        <div class="card">
-            <div id="food-emoji" class="emoji">🍎</div>
-            <div id="food-name">Apple</div>
-        </div>
+<h2>🎮 Game Time!</h2>
+<p>Answer: Is this GOOD FOOD or JUNK FOOD?</p>
 
-        <div class="buttons">
-            <button id="healthy-btn">🟢 Healthy</button>
-            <button id="junk-btn">🔴 Junk</button>
-        </div>
+<hr>
 
-        <p id="feedback"></p>
-    </div>
+<p>🍎 Apple</p>
+<button onclick="alert('Correct! Apple is GOOD FOOD 👍')">GOOD FOOD</button>
+<button onclick="alert('Try again!')">JUNK FOOD</button>
 
-</div>
+<hr>
 
-<script src="game.js"></script>
+<p>🍬 Candy</p>
+<button onclick="alert('Try again! Candy is JUNK FOOD 👎')">GOOD FOOD</button>
+<button onclick="alert('Correct! Candy is JUNK FOOD 👍')">JUNK FOOD</button>
+
+<hr>
+
+<p>🥦 Broccoli</p>
+<button onclick="alert('Correct! Broccoli is GOOD FOOD 👍')">GOOD FOOD</button>
+<button onclick="alert('Try again!')">JUNK FOOD</button>
+
+<hr>
+
+<p>🍟 Chips</p>
+<button onclick="alert('Try again! Chips is JUNK FOOD 👎')">GOOD FOOD</button>
+<button onclick="alert('Correct! Chips is JUNK FOOD 👍')">JUNK FOOD</button>
+
+<hr>
+
+<h2>🏆 Goal</h2>
+<p>Become a <strong>Healthy Food Hero!</strong></p>
+
 </body>
 </html>
