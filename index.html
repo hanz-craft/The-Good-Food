@@ -1,89 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Healthy Food Hero Challenge</title>
-    <style>
-        :root { --rainbow: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 20%, #fbc2eb 40%, #a18cd1 60%, #84fab0 80%, #8fd3f4 100%); }
-        body { margin: 0; font-family: 'Arial', sans-serif; background: var(--rainbow); display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .game-wrapper { width: 95%; max-width: 600px; background: white; padding: 20px; border-radius: 40px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .hidden { display: none; }
-        
-        .vocab-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 20px 0; }
-        .v-card { background: #fdfdfd; border: 2px solid #eee; padding: 10px; border-radius: 15px; cursor: pointer; transition: 0.2s; }
-        .display-box { background: #fff9c4; padding: 20px; border-radius: 20px; margin-bottom: 20px; }
-        #preview-emoji { font-size: 5rem; }
-        
-        .main-btn, .choice-btn { border: none; padding: 20px 40px; border-radius: 50px; font-size: 1.2rem; cursor: pointer; color: white; font-weight: bold; }
-        .main-btn { background: #ff9800; }
-        .choice-btn { width: 45%; margin: 5px; }
-        .healthy { background: #4caf50; }
-        .junk { background: #f44336; }
-        #feedback { font-size: 1.5rem; font-weight: bold; height: 40px; margin: 10px 0; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthy Food Hero</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <div class="game-wrapper">
-        <div id="vocab-screen">
-            <h1>🌈 Vocabulary Review</h1>
-            <p>Tap a food to learn!</p>
-            <div class="display-box" id="preview-box">
-                <div id="preview-emoji">🍎</div>
-                <h2 id="preview-name">Apple</h2>
-            </div>
-            <div class="vocab-grid" id="vocab-grid"></div>
-            <button id="start-game-btn" class="main-btn hidden">🎮 Start Healthy Hero Challenge</button>
-        </div>
+<div class="container">
 
-        <div id="game-screen" class="hidden">
-            <h1 id="level-title">Level 1</h1>
-            <div class="display-box">
-                <div id="game-emoji" style="font-size: 5rem;">🍎</div>
-            </div>
-            <div>
-                <button class="choice-btn healthy" onclick="submitAnswer(true)">🟢 Good</button>
-                <button class="choice-btn junk" onclick="submitAnswer(false)">🔴 Junk</button>
-            </div>
-            <div id="feedback"></div>
-            <p>Score: <span id="score">0</span></p>
-        </div>
+    <!-- VOCABULARY SCREEN -->
+    <div id="vocab-screen" class="screen active">
+        <h1>🍎 Vocabulary Review</h1>
+        <p>Click the food and learn the word</p>
+
+        <div id="vocab-list" class="grid"></div>
+
+        <button id="start-btn">🎮 Start Game</button>
     </div>
 
-    <script>
-        const foodList = [
-            { name: "Apple", emoji: "🍎", healthy: true }, { name: "Banana", emoji: "🍌", healthy: true },
-            { name: "Carrot", emoji: "🥕", healthy: true }, { name: "Broccoli", emoji: "🥦", healthy: true },
-            { name: "Candy", emoji: "🍬", healthy: false }, { name: "Chips", emoji: "🍟", healthy: false }
-        ];
+    <!-- GAME SCREEN -->
+    <div id="game-screen" class="screen">
+        <h1>🌟 Healthy Food Hero</h1>
 
-        let score = 0, currentItem = 0, reviewed = new Set();
-        const grid = document.getElementById('vocab-grid');
-        
-        foodList.forEach(food => {
-            const card = document.createElement('div');
-            card.className = 'v-card';
-            card.innerHTML = `<div>${food.emoji}</div><small>${food.name}</small>`;
-            card.onclick = () => {
-                document.getElementById('preview-emoji').innerText = food.emoji;
-                document.getElementById('preview-name').innerText = food.name;
-                window.speechSynthesis.speak(new SpeechSynthesisUtterance(food.name));
-                reviewed.add(food.name);
-                if(reviewed.size >= 3) document.getElementById('start-game-btn').classList.remove('hidden');
-            };
-            grid.appendChild(card);
-        });
+        <div class="score">⭐ Score: <span id="score">0</span></div>
 
-        document.getElementById('start-game-btn').onclick = () => {
-            document.getElementById('vocab-screen').classList.add('hidden');
-            document.getElementById('game-screen').classList.remove('hidden');
-        };
+        <div class="card">
+            <div id="food-emoji" class="emoji">🍎</div>
+            <div id="food-name">Apple</div>
+        </div>
 
-        function submitAnswer(isHealthy) {
-            alert(isHealthy ? "Correct!" : "Try again!");
-            score++;
-            document.getElementById('score').innerText = score;
-        }
-    </script>
+        <div class="buttons">
+            <button id="healthy-btn">🟢 Healthy</button>
+            <button id="junk-btn">🔴 Junk</button>
+        </div>
+
+        <p id="feedback"></p>
+    </div>
+
+</div>
+
+<script src="game.js"></script>
 </body>
 </html>
