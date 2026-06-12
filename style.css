@@ -1,24 +1,60 @@
-:root { --rainbow: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 20%, #fbc2eb 40%, #a18cd1 60%, #84fab0 80%, #8fd3f4 100%); }
-body { margin: 0; font-family: 'Arial Rounded MT Bold', Arial, sans-serif; background: var(--rainbow); display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-.game-wrapper { width: 95%; max-width: 600px; background: white; padding: 20px; border-radius: 40px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-.hidden { display: none; }
+body {
+    font-family: Arial;
+    text-align: center;
+    margin: 0;
+    background: linear-gradient(to right, #ffeaa7, #a29bfe);
+}
 
-/* Vocabulary */
-.vocab-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 20px 0; }
-.v-card { background: #fdfdfd; border: 2px solid #eee; padding: 10px; border-radius: 15px; cursor: pointer; transition: 0.2s; }
-.v-card:hover { transform: scale(1.1); border-color: #a18cd1; }
-.display-box { background: #fff9c4; padding: 20px; border-radius: 20px; margin-bottom: 20px; }
-#preview-emoji { font-size: 5rem; }
+.container {
+    padding: 20px;
+}
 
-/* Buttons */
-.main-btn, .choice-btn { border: none; padding: 20px 40px; border-radius: 50px; font-size: 1.2rem; cursor: pointer; color: white; font-weight: bold; }
-.main-btn { background: #ff9800; animation: pulse 2s infinite; }
-.choice-btn { width: 45%; }
-.healthy { background: #4caf50; }
-.junk { background: #f44336; }
+.screen {
+    display: none;
+}
 
-/* Feedback */
-#feedback { font-size: 1.5rem; font-weight: bold; height: 40px; margin: 10px 0; }
-.reward-emoji { font-size: 5rem; }
+.screen.active {
+    display: block;
+}
 
-@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.card-box {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 200px;
+    border-radius: 20px;
+}
+
+.emoji {
+    font-size: 60px;
+}
+
+button {
+    padding: 15px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+#healthy-btn {
+    background: #55efc4;
+}
+
+#junk-btn {
+    background: #ff7675;
+}
