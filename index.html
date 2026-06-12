@@ -9,14 +9,42 @@
 <body>
 
     <div class="game-container">
-        <!-- Header -->
-        <header>
-            <h1>Good Food Sorting Game</h1>
-            <div id="score-board">⭐ Score: <span id="score">0</span></div>
-        </header>
+        
+        <!-- SECTION 1: VOCABULARY REVIEW -->
+        <div id="vocab-section">
+            <h1>📚 Let's Learn First!</h1>
+            <p>Look at the food below. Remember which is Good and which is Junk!</p>
+            
+            <div class="vocab-grid">
+                <!-- Healthy -->
+                <div class="card"><div>🍎</div><p>Apple</p></div>
+                <div class="card"><div>🍌</div><p>Banana</p></div>
+                <div class="card"><div>🥕</div><p>Carrot</p></div>
+                <div class="card"><div>🥦</div><p>Broccoli</p></div>
+                <div class="card"><div>🐟</div><p>Fish</p></div>
+                <div class="card"><div>🥛</div><p>Milk</p></div>
+                <div class="card"><div>🥚</div><p>Egg</p></div>
+                <div class="card"><div>🍚</div><p>Rice</p></div>
+                <div class="card"><div>💧</div><p>Water</p></div>
+                <div class="card"><div>🥭</div><p>Mango</p></div>
+                <!-- Junk -->
+                <div class="card"><div>🍬</div><p>Candy</p></div>
+                <div class="card"><div>🥤</div><p>Soda</p></div>
+                <div class="card"><div>🍟</div><p>Chips</p></div>
+                <div class="card"><div>🍫</div><p>Chocolate</p></div>
+                <div class="card"><div>🎂</div><p>Cake</p></div>
+            </div>
 
-        <!-- Game Area -->
-        <div id="game-area">
+            <button id="start-game-btn" class="start-btn">🎮 Start the Game</button>
+        </div>
+
+        <!-- SECTION 2: GAME AREA (Hidden by default) -->
+        <div id="game-section" class="hidden">
+            <header>
+                <h1>Good Food Sorting</h1>
+                <div id="score-board">⭐ Score: <span id="score">0</span></div>
+            </header>
+
             <div id="display-card">
                 <div id="food-emoji">🍎</div>
                 <h2 id="food-name">Apple</h2>
@@ -30,9 +58,9 @@
             </div>
         </div>
 
-        <!-- End Screen -->
+        <!-- END SCREEN -->
         <div id="end-screen" class="hidden">
-            <h2>Game Finished!</h2>
+            <h2>Well Done! 🎉</h2>
             <p>Your Final Score: <span id="final-score">0</span></p>
             <button onclick="location.reload()" class="restart-btn">Play Again</button>
         </div>
