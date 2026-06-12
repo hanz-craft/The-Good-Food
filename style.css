@@ -1,0 +1,412 @@
+/* --- KINDERGARTEN TOPIC BRANDING CONFIGURATION --- */
+:root {
+    --bg-mint: #F2F8F4;
+    --bg-sunshine: #FFFDF2;
+    --bg-sky: #F2F7FA;
+    --white: #FFFFFF;
+    
+    --kid-green: #60B36C;
+    --kid-green-light: #EBF7ED;
+    --kid-orange: #FF9244;
+    --kid-yellow: #FFD23F;
+    --kid-yellow-light: #FFF9E1;
+    --kid-blue: #4EA5D9;
+    --kid-blue-light: #EEF6FC;
+    --kid-red: #EE6055;
+    --kid-red-light: #FDEEEF;
+    
+    --text-dark: #2B3A2F;
+    --text-muted: #5A6E5F;
+    --border-style: 4px dashed;
+    --card-shadow: 0 12px 0px rgba(0, 0, 0, 0.04);
+}
+
+/* --- OVERRIDES & BODY FORMATTING --- */
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--bg-mint);
+    color: var(--text-dark);
+    padding-top: 80px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+}
+
+/* --- THE SUB-NAVBAR SYSTEM --- */
+.food-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    z-index: 2000;
+    padding: 12px 0;
+}
+
+.food-nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.back-hub-btn {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 700;
+    font-size: 1rem;
+    background-color: #F0EDE7;
+    padding: 8px 16px;
+    border-radius: 40px;
+    transition: transform 0.2s;
+}
+
+.back-hub-btn:hover {
+    transform: scale(1.05);
+}
+
+.food-nav-links {
+    display: flex;
+    gap: 12px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 8px 16px;
+    border-radius: 40px;
+    transition: all 0.2s ease;
+}
+
+.green-item { background-color: var(--kid-green-light); color: var(--kid-green); }
+.yellow-item { background-color: var(--kid-yellow-light); color: var(--kid-orange); }
+.blue-item { background-color: var(--kid-blue-light); color: var(--kid-blue); }
+
+.nav-item:hover {
+    transform: translateY(-2px);
+    filter: brightness(0.95);
+}
+
+/* --- FOOD HERO COMPONENT --- */
+.food-hero {
+    background: linear-gradient(135deg, #FFF9E6 0%, #E3F2E6 100%);
+    text-align: center;
+    padding: 60px 20px;
+    border-bottom: 6px dashed var(--white);
+    position: relative;
+}
+
+.food-hero-container {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.character-badge {
+    background-color: var(--white);
+    color: var(--kid-orange);
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 30px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.03);
+}
+
+.food-hero h1 {
+    font-size: 3.2rem;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    text-shadow: 2px 2px 0px var(--white);
+}
+
+.food-hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+/* --- STRUCTURE HOUSING --- */
+.food-main-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.food-section {
+    padding: 50px 0;
+}
+
+.section-heading {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+}
+
+.section-subheading {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+.text-green { color: var(--kid-green); }
+.text-yellow { color: var(--kid-orange); }
+.text-blue { color: var(--kid-blue); }
+
+/* --- VOCABULARY TILES GRID --- */
+.vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+.vocab-card {
+    background-color: var(--white);
+    border-radius: 24px;
+    padding: 20px 10px;
+    text-align: center;
+    border: 3px solid var(--white);
+    box-shadow: var(--card-shadow);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.vocab-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    border-color: var(--kid-green);
+}
+
+.vocab-emoji {
+    font-size: 3.5rem;
+    margin-bottom: 8px;
+}
+
+.vocab-card h3 {
+    font-size: 1.25rem;
+    color: var(--text-dark);
+}
+
+/* --- THE SORTING GAME ARENA --- */
+.game-wrapper {
+    background-color: var(--white);
+    border-radius: 32px;
+    padding: 40px 20px;
+    box-shadow: var(--card-shadow);
+    border: 4px solid var(--kid-yellow-light);
+    text-align: center;
+}
+
+.score-board {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto 30px;
+    background-color: var(--bg-sunshine);
+    padding: 12px 24px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border: 2px solid var(--kid-yellow);
+}
+
+.feedback-text {
+    color: var(--kid-orange);
+    font-size: 1rem;
+}
+
+.game-arena {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.food-display-box {
+    background-color: var(--bg-mint);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 4px dashed var(--kid-green);
+    box-shadow: inset 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.active-food-emoji {
+    font-size: 5rem;
+    line-height: 1;
+}
+
+.active-food-name {
+    font-size: 1.4rem;
+    margin-top: 5px;
+    color: var(--text-dark);
+}
+
+.basket-buttons-container {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+}
+
+.basket-btn {
+    flex: 1;
+    border: none;
+    padding: 24px 16px;
+    border-radius: 24px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.basket-btn:active {
+    transform: scale(0.96);
+}
+
+.basket-healthy {
+    background-color: var(--kid-green-light);
+    border: 3px solid var(--kid-green);
+    box-shadow: 0 8px 0 var(--kid-green);
+}
+
+.basket-junk {
+    background-color: var(--kid-red-light);
+    border: 3px solid var(--kid-red);
+    box-shadow: 0 8px 0 var(--kid-red);
+}
+
+.basket-healthy:hover { box-shadow: 0 4px 0 var(--kid-green); transform: translateY(4px); }
+.basket-junk:hover { box-shadow: 0 4px 0 var(--kid-red); transform: translateY(4px); }
+
+.basket-icon { font-size: 2.5rem; display: block; margin-bottom: 4px; }
+.basket-label { font-size: 1.3rem; font-weight: 700; color: var(--text-dark); }
+.basket-subtext { font-size: 0.9rem; font-weight: 700; color: var(--text-muted); }
+
+/* --- DIGITAL WORKSHEET CARD --- */
+.worksheet-box {
+    background-color: var(--white);
+    border-radius: 32px;
+    padding: 40px;
+    box-shadow: var(--card-shadow);
+}
+
+.worksheet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.worksheet-item {
+    text-align: center;
+    cursor: pointer;
+}
+
+.worksheet-circle-target {
+    width: 120px;
+    height: 120px;
+    background-color: var(--bg-sky);
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.worksheet-item:hover .worksheet-circle-target {
+    transform: scale(1.04);
+}
+
+.worksheet-emoji {
+    font-size: 3.5rem;
+}
+
+/* Interactive Active State (When kids click to circle it) */
+.worksheet-item.circled .worksheet-circle-target {
+    border-color: var(--kid-blue);
+    background-color: var(--kid-blue-light);
+    box-shadow: 0 0 15px rgba(78, 165, 217, 0.2);
+}
+
+/* Marked correction states */
+.worksheet-item.correct-match .worksheet-circle-target {
+    background-color: var(--kid-green-light);
+    border-color: var(--kid-green);
+}
+
+.worksheet-item.wrong-match .worksheet-circle-target {
+    background-color: var(--kid-red-light);
+    border-color: var(--kid-red);
+}
+
+.worksheet-actions {
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--kid-blue);
+    color: var(--white);
+    border: none;
+    padding: 16px 36px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 40px;
+    box-shadow: 0 6px 0 #3a8bbd;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    font-family: inherit;
+}
+
+.btn-primary:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #3a8bbd;
+}
+
+.worksheet-score-text {
+    margin-top: 20px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--kid-green);
+}
+
+.bonus-drawing-box {
+    margin-top: 40px;
+    background-color: #FFFDF5;
+    border: var(--border-style) var(--kid-yellow);
+    border-radius: 24px;
+    padding: 24px;
+    text-align: center;
+}
+
+.bonus-drawing-box h3 { color: var(--kid-orange); margin-bottom: 6px; }
+
+/* --- FOOTER --- */
+.food-footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* --- MOBILE COMPACT OPTIMIZATION --- */
+@media (max-width: 600px) {
+    .food-hero h1 { font-size: 2.2rem; }
+    .basket-buttons-container { flex-direction: column; gap: 14px; }
+    .worksheet-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .worksheet-circle-target { width: 90px; height: 90px; }
+    .worksheet-emoji { font-size: 2.5rem; }
+    .food-nav-links { display: none; } /* Keeps layout tiny and clean on mobile viewports */
+}
