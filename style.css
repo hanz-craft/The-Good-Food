@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(
+        135deg,
+        #ff9a9e,
+        #fad0c4,
+        #fbc2eb,
+        #a18cd1,
+        #fbc2eb
+    );
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* MAIN TITLE */
+h1 {
+    color: white;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+/* SUB TEXT */
+p {
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* SECTION HEADINGS */
+h2 {
+    background: white;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: #ff6f91;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+/* VOCAB WORDS */
+p {
+    background: rgba(255,255,255,0.85);
+    margin: 8px auto;
+    padding: 8px;
+    width: 80%;
+    border-radius: 12px;
+    color: #333;
+}
+
+/* BUTTONS */
+button {
+    padding: 15px 20px;
+    margin: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* GOOD FOOD BUTTON */
+button:nth-of-type(odd) {
+    background: #55efc4;
+}
+
+/* JUNK FOOD BUTTON */
+button:nth-of-type(even) {
+    background: #ff7675;
+}
+
+/* BUTTON HOVER EFFECT */
+button:hover {
+    transform: scale(1.05);
+}
+
+/* GAME FEEDBACK TEXT */
+#feedback {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #fff;
+}
