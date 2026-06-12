@@ -1,80 +1,80 @@
-const foodList = [
-    { name: "Apple", emoji: "🍎", healthy: true }, { name: "Banana", emoji: "🍌", healthy: true },
-    { name: "Carrot", emoji: "🥕", healthy: true }, { name: "Broccoli", emoji: "🥦", healthy: true },
-    { name: "Fish", emoji: "🐟", healthy: true }, { name: "Milk", emoji: "🥛", healthy: true },
-    { name: "Egg", emoji: "🥚", healthy: true }, { name: "Rice", emoji: "🍚", healthy: true },
-    { name: "Water", emoji: "💧", healthy: true }, { name: "Mango", emoji: "🥭", healthy: true },
-    { name: "Candy", emoji: "🍬", healthy: false }, { name: "Soda", emoji: "🥤", healthy: false },
-    { name: "Chips", emoji: "🍟", healthy: false }, { name: "Chocolate", emoji: "🍫", healthy: false },
-    { name: "Cake", emoji: "🎂", healthy: false }
+const foods = [
+    { name: "Apple", emoji: "🍎", healthy: true },
+    { name: "Banana", emoji: "🍌", healthy: true },
+    { name: "Carrot", emoji: "🥕", healthy: true },
+    { name: "Broccoli", emoji: "🥦", healthy: true },
+    { name: "Milk", emoji: "🥛", healthy: true },
+    { name: "Candy", emoji: "🍬", healthy: false },
+    { name: "Soda", emoji: "🥤", healthy: false },
+    { name: "Chips", emoji: "🍟", healthy: false },
+    { name: "Chocolate", emoji: "🍫", healthy: false }
 ];
 
 let score = 0;
-let level = 1;
-let currentItem = 0;
-let reviewedCount = 0;
-const reviewed = new Set();
+let current;
 
-// 1. Init Vocabulary
-const vocabGrid = document.getElementById('vocab-grid');
-foodList.forEach(food => {
-    const card = document.createElement('div');
-    card.className = 'v-card';
-    card.innerHTML = `<div>${food.emoji}</div><small>${food.name}</small>`;
-    card.onclick = () => {
-        document.getElementById('preview-emoji').innerText = food.emoji;
-        document.getElementById('preview-name').innerText = food.name;
+const vocabList = document.getElementById("vocab-list");
+const vocabScreen = document.getElementById("vocab-screen");
+const gameScreen = document.getElementById("game-screen");
+
+const foodEmoji = document.getElementById("food-emoji");
+const foodName = document.getElementById("food-name");
+const scoreText = document.getElementById("score");
+const feedback = document.getElementById("feedback");
+
+const healthyBtn = document.getElementById("healthy-btn");
+const junkBtn = document.getElementById("junk-btn");
+const startBtn = document.getElementById("start-btn");
+
+// VOCABULARY SETUP
+foods.forEach(food => {
+    let div = document.createElement("div");
+    div.classList.add("card-box");
+    div.innerHTML = `${food.emoji}<br>${food.name}`;
+
+    div.onclick = () => {
         speak(food.name);
-        reviewed.add(food.name);
-        if(reviewed.size >= 5) document.getElementById('start-game-btn').classList.remove('hidden');
     };
-    vocabGrid.appendChild(card);
+
+    vocabList.appendChild(div);
 });
 
+// TEXT TO SPEECH
 function speak(text) {
-    window.speechSynthesis.cancel();
-    const msg = new SpeechSynthesisUtterance(text);
+    let msg = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(msg);
 }
 
-// 2. Game Logic
-document.getElementById('start-game-btn').onclick = () => {
-    document.getElementById('vocab-screen').classList.add('hidden');
-    document.getElementById('game-screen').classList.remove('hidden');
-    nextItem();
+// START GAME
+startBtn.onclick = () => {
+    vocabScreen.classList.remove("active");
+    gameScreen.classList.add("active");
+    nextFood();
 };
 
-function nextItem() {
-    if (currentItem >= 15) {
-        showFinalScreen();
-        return;
-    }
-    const item = foodList[Math.floor(Math.random() * foodList.length)];
-    document.getElementById('game-emoji').innerText = item.emoji;
-    window.currentItemObj = item;
-    
-    // Set level titles
-    if(score < 3) document.getElementById('level-title').innerText = "Level 1: Easy";
-    else if(score < 8) document.getElementById('level-title').innerText = "Level 2: Medium";
-    else document.getElementById('level-title').innerText = "Level 3: Fast Hero";
+// NEXT FOOD
+function nextFood() {
+    current = foods[Math.floor(Math.random() * foods.length)];
+    foodEmoji.textContent = current.emoji;
+    foodName.textContent = current.name;
+    feedback.textContent = "";
 }
 
-function submitAnswer(isHealthy) {
-    if (window.currentItemObj.healthy === isHealthy) {
+// CHECK ANSWER
+function check(answer) {
+    if (answer === current.healthy) {
         score++;
-        document.getElementById('feedback').innerText = "🎉 Great Job!";
-        document.getElementById('feedback').style.color = "green";
+        feedback.textContent = "🎉 Great Job!";
+        feedback.style.color = "green";
     } else {
-        document.getElementById('feedback').innerText = "❌ Try again!";
-        document.getElementById('feedback').style.color = "red";
+        feedback.textContent = "✨ Try again!";
+        feedback.style.color = "red";
     }
-    document.getElementById('score').innerText = score;
-    currentItem++;
-    setTimeout(nextItem, 1000);
+
+    scoreText.textContent = score;
+
+    setTimeout(nextFood, 1000);
 }
 
-function showFinalScreen() {
-    document.getElementById('game-screen').classList.add('hidden');
-    document.getElementById('final-screen').classList.remove('hidden');
-    document.getElementById('final-score').innerText = score;
-}
+healthyBtn.onclick = () => check(true);
+junkBtn.onclick = () => check(false);
