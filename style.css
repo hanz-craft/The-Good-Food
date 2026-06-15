@@ -26,3 +26,79 @@ body { margin: 0; background: var(--bg-gradient); font-family: 'Fredoka', sans-s
 @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 .pop-in { animation: pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 @keyframes pop { from { transform: scale(0); } to { transform: scale(1); } }
+
+/* Navigation Bar */
+.nav-bar {
+    position: fixed;
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
+}
+
+/* Desktop: Top-Right */
+@media (min-width: 769px) {
+    .nav-bar { top: 20px; right: 20px; flex-direction: column; }
+}
+
+/* Mobile/Tablet: Bottom Fixed */
+@media (max-width: 768px) {
+    .nav-bar { bottom: 0; left: 0; width: 100%; justify-content: space-around; padding: 10px; background: white; border-top: 5px solid #eee; }
+}
+
+/* Buttons */
+.nav-btn { padding: 15px 25px; border-radius: 50px; border: none; font-size: 1.2rem; cursor: pointer; color: white; font-weight: bold; }
+.home-btn { background-color: #FF6B6B; } /* Coral */
+.menu-btn { background-color: #4ECDC4; } /* Teal */
+.exit-btn { background-color: #FFE66D; color: #333; } /* Yellow */
+
+/* Modals */
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 2000; }
+.modal-content { background: white; padding: 30px; border-radius: 20px; text-align: center; }
+.link-btn, .yes-btn, .no-btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; border: none; font-size: 1.2rem; cursor: pointer; }
+3. Vanilla JavaScript
+Add this to your <script> tag to make the buttons interactive.
+
+JavaScript
+// Smooth Scroll to Top
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Toggle Menu
+function toggleMenu() {
+    const modal = document.getElementById('menu-modal');
+    modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+}
+
+// Exit Logic
+function showExitModal() {
+    document.getElementById('exit-modal').style.display = 'flex';
+}
+
+function closeExitModal() {
+    document.getElementById('exit-modal').style.display = 'none';
+}
+
+function confirmExit() {
+    // Reset Game Variables
+    window.score = 0;
+    window.progress = 0;
+    
+    // Perform Actions
+    closeExitModal();
+    const menu = document.getElementById('menu-modal');
+    menu.style.display = 'none';
+    scrollToTop();
+    
+    console.log("Game reset. Returning to start.");
+}
+
+// Navigate to Sections
+function goToSection(sectionId) {
+    // Replace with your actual section element IDs
+    const section = document.getElementById(sectionId);
+    if(section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        toggleMenu();
+    }
+}
