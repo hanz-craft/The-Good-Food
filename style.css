@@ -4,14 +4,15 @@ body {
     text-align: center;
     background: linear-gradient(
         135deg,
-        #ff9a9e,
-        #fad0c4,
-        #fbc2eb,
-        #a18cd1,
-        #fbc2eb
+        #FF6B6B,
+        #FFD93D,
+        #6BCB77,
+        #4D96FF,
+        #B983FF
     );
     min-height: 100vh;
     padding: 20px;
+}
 
     display: flex;
     flex-direction: column;
@@ -46,6 +47,17 @@ p {
     border-radius: 16px;
     color: #333;
     font-size: 18px;
+}
+.vocab-card {
+    display: inline-block;
+    width: 120px;
+    margin: 10px;
+    padding: 15px;
+    background: white;
+    border-radius: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 /* BUTTONS */
