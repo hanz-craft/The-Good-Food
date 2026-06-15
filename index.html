@@ -2,63 +2,222 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Good Food</title>
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(
+                135deg,
+                #FF6B6B,
+                #FFD93D,
+                #6BCB77,
+                #4D96FF,
+                #B983FF
+            );
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: white;
+            font-size: 3rem;
+            text-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            display: inline-block;
+            background: white;
+            color: #ff6f91;
+            padding: 12px 25px;
+            border-radius: 25px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+
+        .vocab-card {
+            display: inline-block;
+            width: 120px;
+            margin: 10px;
+            padding: 15px;
+            background: white;
+            border-radius: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+
+        .vocab-card:hover {
+            transform: scale(1.05);
+        }
+
+        p {
+            background: rgba(255,255,255,0.9);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: #333;
+            font-size: 18px;
+        }
+
+        button {
+            padding: 15px 25px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: bold;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .good-btn {
+            background-color: #6BCB77;
+            color: white;
+        }
+
+        .junk-btn {
+            background-color: #FF6B6B;
+            color: white;
+        }
+
+        .start-btn {
+            background-color: #4D96FF;
+            color: white;
+        }
+
+        hr {
+            margin: 40px auto;
+            width: 80%;
+            border: 2px dashed white;
+        }
+
+        .goal {
+            background: white;
+            display: inline-block;
+            padding: 20px;
+            border-radius: 20px;
+            font-size: 20px;
+            color: #ff6f91;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
 
-<h1>🥗 The Good Food</h1>
-<p>Choose if the food is GOOD FOOD or JUNK FOOD</p>
+    <h1>🥗 The Good Food</h1>
 
-<hr>
+    <p>Let's learn about healthy foods and become a Healthy Food Hero!</p>
 
-<h2>📚 Vocabulary Review</h2>
+    <hr>
 
-<p>🍎 Apple - Good Food</p>
-<p>🍌 Banana - Good Food</p>
-<p>🥕 Carrot - Good Food</p>
-<p>🥦 Broccoli - Good Food</p>
-<p>🥛 Milk - Good Food</p>
+    <h2>📚 Vocabulary Review</h2>
 
-<p>🍬 Candy - Junk Food</p>
-<p>🥤 Soda - Junk Food</p>
-<p>🍟 Chips - Junk Food</p>
-<p>🍫 Chocolate - Junk Food</p>
+    <br><br>
 
-<hr>
+    <div class="vocab-card">🍎<br>Apple</div>
+    <div class="vocab-card">🍌<br>Banana</div>
+    <div class="vocab-card">🥕<br>Carrot</div>
+    <div class="vocab-card">🥦<br>Broccoli</div>
+    <div class="vocab-card">🥛<br>Milk</div>
+    <div class="vocab-card">🐟<br>Fish</div>
+    <div class="vocab-card">🍬<br>Candy</div>
+    <div class="vocab-card">🥤<br>Soda</div>
+    <div class="vocab-card">🍟<br>Chips</div>
+    <div class="vocab-card">🍫<br>Chocolate</div>
 
-<h2>🎮 Game Time!</h2>
-<p>Answer: Is this GOOD FOOD or JUNK FOOD?</p>
+    <hr>
 
-<hr>
+    <h2>🎮 Ready to Play?</h2>
 
-<p>🍎 Apple</p>
-<button onclick="alert('Correct! Apple is GOOD FOOD 👍')">GOOD FOOD</button>
-<button onclick="alert('Try again!')">JUNK FOOD</button>
+    <br><br>
 
-<hr>
+    <p>Now that you know the foods, let's become a Healthy Food Hero!</p>
 
-<p>🍬 Candy</p>
-<button onclick="alert('Try again! Candy is JUNK FOOD 👎')">GOOD FOOD</button>
-<button onclick="alert('Correct! Candy is JUNK FOOD 👍')">JUNK FOOD</button>
+    <br><br>
 
-<hr>
+    <a href="#game">
+        <button class="start-btn">Start Game ▶️</button>
+    </a>
 
-<p>🥦 Broccoli</p>
-<button onclick="alert('Correct! Broccoli is GOOD FOOD 👍')">GOOD FOOD</button>
-<button onclick="alert('Try again!')">JUNK FOOD</button>
+    <hr>
 
-<hr>
+    <h2 id="game">🎯 Healthy Hero Challenge</h2>
 
-<p>🍟 Chips</p>
-<button onclick="alert('Try again! Chips is JUNK FOOD 👎')">GOOD FOOD</button>
-<button onclick="alert('Correct! Chips is JUNK FOOD 👍')">JUNK FOOD</button>
+    <br><br>
 
-<hr>
+    <p>Answer: Is this GOOD FOOD or JUNK FOOD?</p>
 
-<h2>🏆 Goal</h2>
-<p>Become a <strong>Healthy Food Hero!</strong></p>
+    <br><br>
+
+    <h3>🍎 Apple</h3>
+
+    <button class="good-btn"
+        onclick="alert('🎉 Correct! Apple is GOOD FOOD!')">
+        GOOD FOOD
+    </button>
+
+    <button class="junk-btn"
+        onclick="alert('❌ Try again! Apple is GOOD FOOD.')">
+        JUNK FOOD
+    </button>
+
+    <hr>
+
+    <h3>🍬 Candy</h3>
+
+    <button class="good-btn"
+        onclick="alert('❌ Try again! Candy is JUNK FOOD.')">
+        GOOD FOOD
+    </button>
+
+    <button class="junk-btn"
+        onclick="alert('🎉 Correct! Candy is JUNK FOOD!')">
+        JUNK FOOD
+    </button>
+
+    <hr>
+
+    <h3>🥦 Broccoli</h3>
+
+    <button class="good-btn"
+        onclick="alert('🎉 Correct! Broccoli is GOOD FOOD!')">
+        GOOD FOOD
+    </button>
+
+    <button class="junk-btn"
+        onclick="alert('❌ Try again! Broccoli is GOOD FOOD.')">
+        JUNK FOOD
+    </button>
+
+    <hr>
+
+    <h3>🍟 Chips</h3>
+
+    <button class="good-btn"
+        onclick="alert('❌ Try again! Chips are JUNK FOOD.')">
+        GOOD FOOD
+    </button>
+
+    <button class="junk-btn"
+        onclick="alert('🎉 Correct! Chips are JUNK FOOD!')">
+        JUNK FOOD
+    </button>
+
+    <hr>
+
+    <div class="goal">
+        🏆 Congratulations! <br><br>
+        You are a <strong>Healthy Food Hero!</strong> 🌟
+    </div>
 
 </body>
 </html>
