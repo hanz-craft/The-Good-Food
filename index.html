@@ -6,6 +6,30 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Quicksand:wght@600&display=swap" rel="stylesheet">
 </head>
+<nav class="nav-bar">
+    <button class="nav-btn home-btn" onclick="scrollToTop()">🏡 Home</button>
+    <button class="nav-btn menu-btn" onclick="toggleMenu()">🎮 Menu</button>
+    <button class="nav-btn exit-btn" onclick="showExitModal()">🚪 Exit</button>
+</nav>
+
+<div id="menu-modal" class="modal">
+    <div class="modal-content">
+        <h2>Choose Where to Go!</h2>
+        <button class="link-btn" onclick="goToSection('vocabulary')">📚 Vocabulary</button>
+        <button class="link-btn" onclick="goToSection('challenge')">🎮 Challenge</button>
+        <button class="link-btn" onclick="goToSection('rewards')">🏆 Rewards</button>
+        <button class="close-btn" onclick="toggleMenu()">Close</button>
+    </div>
+</div>
+
+<div id="exit-modal" class="modal">
+    <div class="modal-content">
+        <h2>Are you sure you want to stop playing?</h2>
+        <button class="yes-btn" onclick="confirmExit()">✅ Yes, Exit</button>
+        <button class="no-btn" onclick="closeExitModal()">❌ No, Keep Playing</button>
+    </div>
+</div>
+    
 <body>
 
     <div class="app-container">
