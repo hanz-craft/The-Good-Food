@@ -7,12 +7,13 @@
     <style>
         /* 🎨 GLOBAL STYLES & RAINBOW THEME */
         :root {
-            --primary: #FF9AA2; /* Pastel Red/Pink */
-            --secondary: #FFB7B2; /* Pastel Orange */
+            --primary: #FF9AA2; 
+            --secondary: #FFB7B2; 
             --yellow: #FFDAC1;
             --green: #E2F0CB;
             --blue: #B5EAD7;
             --purple: #C7CEEA;
+            --cyan: #8DE4E9; /* Added for Worksheet button */
             --text-dark: #333;
             --bg-color: transparent; 
         }
@@ -93,6 +94,7 @@
 
         .nav-btn.home { background-color: var(--primary); box-shadow: 0 4px 0px #d4787f; }
         .nav-btn.review { background-color: var(--secondary); box-shadow: 0 4px 0px #d49590; }
+        .nav-btn.worksheet { background-color: var(--cyan); box-shadow: 0 4px 0px #6cbabf; color: #333; } /* 📝 NEW WORKSHEET BUTTON */
         .nav-btn.menu { background-color: var(--yellow); box-shadow: 0 4px 0px #d4b49d; }
         .nav-btn.exit { background-color: #ff6b6b; color: white; box-shadow: 0 4px 0px #c94c4c; }
 
@@ -148,6 +150,118 @@
             50% { transform: translateY(-10px); }
         }
 
+        /* 📝 WORKSHEET STYLES */
+        .ws-student-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            font-size: 1.5rem;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            border: 4px dashed var(--secondary);
+            max-width: 950px;
+        }
+        .ws-student-info label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        .ws-student-info input {
+            font-size: 1.5rem;
+            padding: 5px 10px;
+            border: 2px solid var(--blue);
+            border-radius: 10px;
+            width: 180px;
+            font-family: inherit;
+        }
+        .ws-score-box {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            background: var(--yellow);
+            padding: 10px 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 0px #d4b49d;
+        }
+        .ws-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px auto;
+            max-width: 950px;
+        }
+        .ws-item {
+            position: relative;
+            background-color: white;
+            border: 8px solid transparent;
+            border-radius: 30px;
+            padding: 20px;
+            width: 160px;
+            cursor: pointer;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .ws-item:hover { transform: scale(1.05); }
+        .ws-item.ws-circled {
+            border-color: #4ECDC4;
+            border-radius: 50%;
+            background-color: #E2F0CB;
+            transform: scale(1.1);
+        }
+        .ws-item.ws-wrong::after {
+            content: "❌";
+            position: absolute;
+            font-size: 6rem;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            pointer-events: none;
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .ws-item.ws-missed {
+            background-color: #FFF5E1;
+            border: 5px dashed #FFB7B2;
+            border-radius: 50%;
+            box-shadow: 0 0 20px 5px #FFDAC1;
+            animation: pulseMiss 1.5s infinite;
+        }
+        @keyframes pulseMiss {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px 10px #FFDAC1; }
+            100% { transform: scale(1); }
+        }
+        .ws-teacher {
+            margin-top: 40px;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 20px;
+            border: 5px solid var(--purple);
+            text-align: left;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .ws-teacher h2 { margin-top: 0; color: var(--text-dark); font-size: 2rem; border-bottom: 2px dashed #ccc; padding-bottom: 10px; }
+        .ws-teacher p { font-size: 1.5rem; font-weight: bold; margin: 15px 0; color: #ff6b6b; }
+        .ws-teacher textarea {
+            width: 100%;
+            font-size: 1.5rem;
+            padding: 15px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            font-family: inherit;
+            resize: vertical;
+        }
+
         /* 🎮 GAME SCREEN & SCOREBOARD */
         .scoreboard {
             display: flex;
@@ -173,39 +287,30 @@
             box-shadow: 0 0 15px #ffcc00;
         }
 
-        /* 📏 UPDATED: ENLARGED CLASSROOM CONTAINER */
         .classroom {
-    position: relative;
-    background-color: var(--green);
-    border: 10px solid var(--primary);
-    border-radius: 30px;
+            position: relative;
+            background-color: var(--green);
+            border: 10px solid var(--primary);
+            border-radius: 30px;
+            height: 75vh; 
+            max-height: 800px; 
+            width: 90%; 
+            max-width: 950px; 
+            margin: 0 auto;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+        }
 
-    /* BIGGER BOARD */
-    width: 98vw;
-    height: 85vh;
-
-    /* REMOVE SIZE LIMITS */
-    max-width: none;
-    max-height: none;
-
-    /* KEEP IT CENTERED */
-    margin: 0 auto;
-
-    overflow: hidden;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
-}
-
-        /* 📏 UPDATED: ENLARGED FOOD ITEMS & TOUCH TARGETS */
         .game-item {
-    position: absolute;
-    font-size: 7rem; /* MUCH BIGGER */
-    cursor: pointer;
-    transition: transform 0.2s;
-    padding: 20px; /* larger touch area */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 1;
+            position: absolute;
+            font-size: 5.5rem; 
+            cursor: pointer;
+            transition: transform 0.2s;
+            padding: 10px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 1;
         }
 
         .game-item:hover { transform: scale(1.2); }
@@ -297,15 +402,12 @@
             .modal-title { font-size: 2.2rem; }
             .modal-subtitle { font-size: 1.5rem; }
             
-            /* 📏 ENLARGED RESPONSIVE SIZES */
-            .classroom { 
-                width: 98%; 
-                height: 70vh; 
-            }
-            .game-item { 
-                font-size: 4rem; /* Scaled down slightly for phone, but larger than old version */
-                padding: 5px; 
-            }
+            .ws-student-info input { width: 120px; }
+            .ws-item { width: 130px; padding: 10px; }
+            .ws-item .vocab-emoji { font-size: 4rem; }
+            
+            .classroom { width: 98%; height: 70vh; }
+            .game-item { font-size: 4rem; padding: 5px; }
         }
     </style>
 </head>
@@ -316,7 +418,7 @@
     <nav class="navbar">
         <button class="nav-btn home" onclick="showScreen('home-screen')">🏠 Home</button>
         <button class="nav-btn review" onclick="showScreen('review-screen')">📚 Review</button>
-        <button class="nav-btn menu" onclick="showScreen('home-screen')">🎮 Menu</button>
+        <button class="nav-btn worksheet" onclick="showScreen('worksheet-screen')">📝 Worksheet</button> <button class="nav-btn menu" onclick="showScreen('home-screen')">🎮 Menu</button>
         <button class="nav-btn exit" onclick="resetAndHome()">🚪 Exit</button>
     </nav>
 
@@ -324,6 +426,7 @@
         <h1>🥗 The Good Food</h1>
         <p style="font-size: 1.5rem;">Welcome to the classroom! Let's learn about healthy food.</p>
         <button class="big-btn" style="background-color: var(--secondary);" onclick="showScreen('review-screen')">📚 Review Words</button>
+        <button class="big-btn" style="background-color: var(--cyan);" onclick="showScreen('worksheet-screen')">📝 Try Worksheet</button>
         <button class="big-btn" style="background-color: var(--green);" onclick="startGame()">🎮 Play Game</button>
     </div>
 
@@ -333,6 +436,29 @@
         <div class="vocab-grid" id="vocab-container"></div>
         <br><br>
         <button class="big-btn" onclick="startGame()">🎮 Let's Play!</button>
+    </div>
+
+    <div id="worksheet-screen" class="screen">
+        <h1>📝 Circle the Good Food</h1>
+        <p style="font-size: 1.8rem; color: #ff6b6b; font-weight: bold;">Instruction: Circle the healthy foods. Do NOT circle the junk foods.</p>
+        
+        <div class="ws-student-info">
+            <label>Name: <input type="text" placeholder="_________"></label>
+            <label>Number: <input type="number" placeholder="___"></label>
+            <label>Section: <input type="text" placeholder="_________"></label>
+            <div class="ws-score-box">Score: <span id="ws-score-val">____</span> / 10</div>
+        </div>
+
+        <div class="ws-grid" id="ws-container">
+            </div>
+
+        <button class="big-btn" style="background-color: var(--green); margin-top: 20px;" onclick="checkWorksheetAnswers()">✅ Check My Answers</button>
+
+        <div class="ws-teacher">
+            <h2>Teacher's Comment</h2>
+            <p>Teacher Hanz Balili:</p>
+            <textarea rows="3" placeholder="Write feedback here..."></textarea>
+        </div>
     </div>
 
     <div id="game-screen" class="screen">
@@ -358,50 +484,28 @@
     <script>
         // --- DATA ---
         const vocabItems = [
-            { word: "Milk", emoji: "🥛" },
-
-            { word: "Cheese", emoji: "🧀" },
-
-            { word: "Rice", emoji: "🍚" },
-
-            { word: "Egg", emoji: "🍳" },
-
-            { word: "Water", emoji: "💧" },
-
+            { word: "milk", emoji: "🥛" },
+            { word: "cheese", emoji: "🧀" },
+            { word: "rice", emoji: "🍚" },
+            { word: "egg", emoji: "🍳" },
+            { word: "water", emoji: "💧" },
             { word: "watermelon", emoji: "🍉" },
-
             { word: "mango", emoji: "🥭" },
-
             { word: "orange", emoji: "🍊" },
-
             { word: "strawberry", emoji: "🍓" },
-
             { word: "apple", emoji: "🍎" },
-
             { word: "grapes", emoji: "🍇" },
-
             { word: "corn", emoji: "🌽" },
-
-            { word: "brocolli", emoji: "🥦" },
-
+            { word: "broccoli", emoji: "🥦" },
             { word: "avocado", emoji: "🥑" },
-
             { word: "carrot", emoji: "🥕" },
-
             { word: "kiwi", emoji: "🥝" },
-
             { word: "eggplant", emoji: "🍆" },
-
             { word: "mushrooms", emoji: "🍄‍🟫" },
-
             { word: "lemon", emoji: "🍋" },
-
             { word: "meat", emoji: "🥩" },
-
             { word: "salad", emoji: "🥗" },
-
             { word: "noodles", emoji: "🍜" },
-
             { word: "banana", emoji: "🍌" }
         ];
 
@@ -410,9 +514,23 @@
             { word: "Book", emoji: "📚" },
             { word: "Bag", emoji: "🎒" },
             { word: "Pencil", emoji: "✏️" },
-            { word: "Laptop", emoji: "💻" }, 
+            { word: "Apple", emoji: "🍏" }, 
             { word: "Crayon", emoji: "🖍️" },
             { word: "Ruler", emoji: "📏" }
+        ];
+
+        // 📝 WORKSHEET DATA (Exact 10 items requested)
+        const worksheetData = [
+            { word: "Apple", emoji: "🍎", isHealthy: true },
+            { word: "Candy", emoji: "🍬", isHealthy: false },
+            { word: "Broccoli", emoji: "🥦", isHealthy: true },
+            { word: "French Fries", emoji: "🍟", isHealthy: false },
+            { word: "Milk", emoji: "🥛", isHealthy: true },
+            { word: "Soda", emoji: "🥤", isHealthy: false },
+            { word: "Banana", emoji: "🍌", isHealthy: true },
+            { word: "Chocolate", emoji: "🍫", isHealthy: false },
+            { word: "Carrot", emoji: "🥕", isHealthy: true },
+            { word: "Pizza", emoji: "🍕", isHealthy: false }
         ];
 
         // 🌈 BACKGROUND FOOD DATA
@@ -424,6 +542,7 @@
         let currentPlayer = 1;
         let foodsFound = 0;
         const GOAL_SCORE = 10;
+        let worksheetChecked = false;
 
         // --- SPEECH SYNTHESIS ---
         function speakWord(word) {
@@ -500,6 +619,79 @@
                 `;
                 container.appendChild(card);
             });
+        }
+
+        // 📝 BUILD WORKSHEET
+        function buildWorksheet() {
+            const container = document.getElementById('ws-container');
+            container.innerHTML = '';
+            worksheetChecked = false;
+            document.getElementById('ws-score-val').innerText = '____';
+            
+            worksheetData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'ws-item';
+                card.dataset.healthy = item.isHealthy;
+                
+                card.innerHTML = `
+                    <span class="vocab-emoji">${item.emoji}</span>
+                    <span class="vocab-text">${item.word}</span>
+                `;
+                
+                card.onclick = () => handleWorksheetClick(card);
+                container.appendChild(card);
+            });
+        }
+
+        function handleWorksheetClick(card) {
+            // Stop interactions if answers are already checked
+            if (worksheetChecked) return;
+
+            const isHealthy = card.dataset.healthy === 'true';
+
+            if (isHealthy) {
+                // Toggle green circle
+                card.classList.toggle('ws-circled');
+                if(card.classList.contains('ws-circled')) speakWord("Good food!");
+            } else {
+                // Instantly display red X, no toggling off
+                card.classList.add('ws-wrong');
+                speakWord("Junk food!");
+            }
+        }
+
+        function checkWorksheetAnswers() {
+            if (worksheetChecked) return; // Prevent multiple checks
+            
+            let score = 0;
+            const items = document.querySelectorAll('.ws-item');
+            
+            items.forEach(item => {
+                const isHealthy = item.dataset.healthy === 'true';
+                const isCircled = item.classList.contains('ws-circled');
+                const isWrong = item.classList.contains('ws-wrong');
+
+                // Logic: 10 items total. 1 point for every correct decision.
+                if (isHealthy) {
+                    if (isCircled) {
+                        score += 1; // Correctly circled
+                    } else {
+                        item.classList.add('ws-missed'); // Show highlight for missed healthy food
+                    }
+                } else {
+                    if (!isWrong) {
+                        score += 1; // Correctly ignored junk food
+                    }
+                }
+            });
+
+            document.getElementById('ws-score-val').innerText = score;
+            worksheetChecked = true;
+            
+            if (score === 10) {
+                playSuccessSound();
+                shootConfetti();
+            }
         }
 
         // 🌈 INITIATE FLOATING BACKGROUND
@@ -643,6 +835,7 @@
         // Initialize on load
         window.onload = () => {
             buildVocab();
+            buildWorksheet(); // 📝 Initialize Worksheet
             initFloatingBackground(); 
         };
     </script>
