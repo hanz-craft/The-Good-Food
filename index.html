@@ -175,30 +175,37 @@
 
         /* 📏 UPDATED: ENLARGED CLASSROOM CONTAINER */
         .classroom {
-            position: relative;
-            background-color: var(--green);
-            border: 10px solid var(--primary);
-            border-radius: 30px;
-            height: 75vh; /* Increased from 60vh */
-            max-height: 800px; /* Increased from 600px */
-            width: 90%; /* Increased from 100% to fill wide screens elegantly */
-            max-width: 950px; /* Increased from 800px */
-            margin: 0 auto;
-            overflow: hidden;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
-        }
+    position: relative;
+    background-color: var(--green);
+    border: 10px solid var(--primary);
+    border-radius: 30px;
+
+    /* BIGGER BOARD */
+    width: 98vw;
+    height: 85vh;
+
+    /* REMOVE SIZE LIMITS */
+    max-width: none;
+    max-height: none;
+
+    /* KEEP IT CENTERED */
+    margin: 0 auto;
+
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+}
 
         /* 📏 UPDATED: ENLARGED FOOD ITEMS & TOUCH TARGETS */
         .game-item {
-            position: absolute;
-            font-size: 5.5rem; /* Increased from 4rem */
-            cursor: pointer;
-            transition: transform 0.2s;
-            padding: 10px; /* Added invisible padding to make clicking easier for kids */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            line-height: 1;
+    position: absolute;
+    font-size: 7rem; /* MUCH BIGGER */
+    cursor: pointer;
+    transition: transform 0.2s;
+    padding: 20px; /* larger touch area */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
         }
 
         .game-item:hover { transform: scale(1.2); }
