@@ -14,7 +14,7 @@
             --blue: #B5EAD7;
             --purple: #C7CEEA;
             --text-dark: #333;
-            --bg-color: transparent; /* Changed to transparent as requested */
+            --bg-color: transparent; 
         }
 
         * {
@@ -26,7 +26,7 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #F9F9F9; /* Base color so it isn't pure white */
+            background-color: #F9F9F9; 
             color: var(--text-dark);
             text-align: center;
             overflow-x: hidden;
@@ -35,35 +35,29 @@
             min-height: 100vh;
         }
 
-        /* 🌈 NEW: FLOATING BACKGROUND STYLES */
+        /* 🌈 FLOATING BACKGROUND STYLES */
         .floating-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -1; /* Keeps it strictly behind all content */
-            pointer-events: none; /* Ensures foods cannot be clicked */
+            z-index: -1; 
+            pointer-events: none; 
             overflow: hidden;
         }
 
         .floating-food {
             position: absolute;
-            opacity: 0.15; /* 10-20% opacity as requested */
+            opacity: 0.15; 
             animation: floatUp linear infinite;
-            filter: blur(1px); /* Slight blur for softness */
+            filter: blur(1px); 
         }
 
         @keyframes floatUp {
-            0% {
-                transform: translateY(110vh) translateX(0px) rotate(0deg);
-            }
-            50% {
-                transform: translateY(40vh) translateX(30px) rotate(10deg);
-            }
-            100% {
-                transform: translateY(-30vh) translateX(-20px) rotate(-15deg);
-            }
+            0% { transform: translateY(110vh) translateX(0px) rotate(0deg); }
+            50% { transform: translateY(40vh) translateX(30px) rotate(10deg); }
+            100% { transform: translateY(-30vh) translateX(-20px) rotate(-15deg); }
         }
 
         /* 🏠 NAVIGATION BAR */
@@ -108,7 +102,7 @@
             padding: 20px;
             flex-grow: 1;
             animation: fadeIn 0.5s ease-in-out;
-            position: relative; /* Ensure content sits above background */
+            position: relative; 
             z-index: 10;
         }
         .screen.active { display: block; }
@@ -154,7 +148,7 @@
             50% { transform: translateY(-10px); }
         }
 
-        /* 🎮 GAME SCREEN */
+        /* 🎮 GAME SCREEN & SCOREBOARD */
         .scoreboard {
             display: flex;
             justify-content: center;
@@ -179,25 +173,32 @@
             box-shadow: 0 0 15px #ffcc00;
         }
 
+        /* 📏 UPDATED: ENLARGED CLASSROOM CONTAINER */
         .classroom {
             position: relative;
             background-color: var(--green);
             border: 10px solid var(--primary);
             border-radius: 30px;
-            height: 60vh;
-            max-height: 600px;
-            width: 100%;
-            max-width: 800px;
+            height: 75vh; /* Increased from 60vh */
+            max-height: 800px; /* Increased from 600px */
+            width: 90%; /* Increased from 100% to fill wide screens elegantly */
+            max-width: 950px; /* Increased from 800px */
             margin: 0 auto;
             overflow: hidden;
             box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
         }
 
+        /* 📏 UPDATED: ENLARGED FOOD ITEMS & TOUCH TARGETS */
         .game-item {
             position: absolute;
-            font-size: 4rem;
+            font-size: 5.5rem; /* Increased from 4rem */
             cursor: pointer;
             transition: transform 0.2s;
+            padding: 10px; /* Added invisible padding to make clicking easier for kids */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 1;
         }
 
         .game-item:hover { transform: scale(1.2); }
@@ -213,7 +214,7 @@
             to { filter: drop-shadow(0 0 20px gold); transform: scale(1.3); }
         }
 
-        /* 🎉 NEW WIN MODAL (10 POINTS OVERLAY) */
+        /* 🎉 WIN MODAL */
         .win-modal {
             display: none; 
             position: fixed;
@@ -278,16 +279,26 @@
             to { transform: translateY(110vh) rotate(360deg); }
         }
 
+        /* 📱 RESPONSIVE ADJUSTMENTS */
         @media (max-width: 600px) {
             h1 { font-size: 2.2rem; }
             .vocab-card { width: 140px; padding: 15px; }
             .vocab-emoji { font-size: 4rem; }
-            .game-item { font-size: 3rem; }
             .player-score { font-size: 1.2rem; padding: 10px 15px; }
             .navbar { gap: 5px; padding: 10px; }
             .nav-btn { font-size: 1rem; padding: 8px 12px; }
             .modal-title { font-size: 2.2rem; }
             .modal-subtitle { font-size: 1.5rem; }
+            
+            /* 📏 ENLARGED RESPONSIVE SIZES */
+            .classroom { 
+                width: 98%; 
+                height: 70vh; 
+            }
+            .game-item { 
+                font-size: 4rem; /* Scaled down slightly for phone, but larger than old version */
+                padding: 5px; 
+            }
         }
     </style>
 </head>
@@ -336,8 +347,6 @@
             <button class="big-btn" style="background-color: var(--primary);" onclick="exitFromModal()">🚪 Exit</button>
         </div>
     </div>
-
-    <div id="end-screen" class="screen" style="display:none;"></div>
 
     <script>
         // --- DATA ---
@@ -399,7 +408,7 @@
             { word: "Ruler", emoji: "📏" }
         ];
 
-        // 🌈 NEW: BACKGROUND FOOD DATA
+        // 🌈 BACKGROUND FOOD DATA
         const bgFoods = ["🥛", "🧀", "🍚", "🍳", "💧", "🍉", "🥭", "🍊", "🍓", "🍎", "🍇", "🌽", "🥦", "🥑", "🥕", "🥝", "🍆", "🍄‍🟫", "🍋", "🥩", "🥗", "🍜", "🍌"];
 
         // --- GAME STATE ---
@@ -418,7 +427,7 @@
             window.speechSynthesis.speak(utterance);
         }
 
-        // --- BROWSER AUDIO FOR SUCCESS CHIME (No downloads required) ---
+        // --- BROWSER AUDIO FOR SUCCESS CHIME ---
         function playSuccessSound() {
             try {
                 const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -429,11 +438,11 @@
                 osc.connect(gain);
                 gain.connect(ctx.destination);
                 
-                osc.type = 'sine'; // Pleasant soft sound
-                osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
-                osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.1); // E5
-                osc.frequency.setValueAtTime(783.99, ctx.currentTime + 0.2); // G5
-                osc.frequency.setValueAtTime(1046.50, ctx.currentTime + 0.3); // C6
+                osc.type = 'sine'; 
+                osc.frequency.setValueAtTime(523.25, ctx.currentTime); 
+                osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.1); 
+                osc.frequency.setValueAtTime(783.99, ctx.currentTime + 0.2); 
+                osc.frequency.setValueAtTime(1046.50, ctx.currentTime + 0.3); 
                 
                 gain.gain.setValueAtTime(0.1, ctx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + 1.5);
@@ -448,7 +457,7 @@
         // --- NAVIGATION & SCREENS ---
         function showScreen(screenId) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('win-modal').style.display = 'none'; // Ensure modal closes
+            document.getElementById('win-modal').style.display = 'none'; 
             document.getElementById(screenId).classList.add('active');
             window.scrollTo(0, 0);
         }
@@ -486,28 +495,23 @@
             });
         }
 
-        // 🌈 NEW: INITIATE FLOATING BACKGROUND
+        // 🌈 INITIATE FLOATING BACKGROUND
         function initFloatingBackground() {
             const container = document.getElementById('floating-bg');
-            const numFoods = 20; // Number of foods on screen at a time
+            const numFoods = 20; 
             
             for(let i = 0; i < numFoods; i++) {
                 const food = document.createElement('div');
                 food.className = 'floating-food';
                 food.innerText = bgFoods[Math.floor(Math.random() * bgFoods.length)];
                 
-                // Randomize size between 80px and 150px
                 const size = Math.floor(Math.random() * 70) + 80;
                 food.style.fontSize = size + 'px';
-                
-                // Randomize horizontal position
                 food.style.left = Math.random() * 100 + 'vw';
                 
-                // Randomize animation speed (15s to 35s) so it feels gentle
                 const duration = Math.random() * 20 + 15;
                 food.style.animationDuration = duration + 's';
                 
-                // Stagger starting times so they don't all clump together
                 const delay = Math.random() * -40;
                 food.style.animationDelay = delay + 's';
                 
@@ -548,24 +552,22 @@
 
             const allItems = [];
             
-            // To ensure players can reach 10 points, we multiply the healthy food items
             for(let i = 0; i < 3; i++) {
                 vocabItems.forEach(item => allItems.push({ ...item, isHealthy: true }));
             }
             
-            // Multiply distractors so the classroom is full of items to search
             for(let i = 0; i < 2; i++) {
                 distractors.forEach(item => allItems.push({ ...item, isHealthy: false }));
             }
 
-            // Place them randomly
             allItems.forEach(item => {
                 const el = document.createElement('div');
                 el.className = 'game-item';
                 el.innerText = item.emoji;
                 
-                el.style.left = Math.floor(Math.random() * 80 + 5) + '%';
-                el.style.top = Math.floor(Math.random() * 75 + 5) + '%';
+                // Keep slightly further away from edges due to larger sizes
+                el.style.left = Math.floor(Math.random() * 75 + 5) + '%';
+                el.style.top = Math.floor(Math.random() * 70 + 5) + '%';
                 
                 el.onclick = () => handleItemClick(el, item);
                 
@@ -574,11 +576,9 @@
         }
 
         function handleItemClick(element, itemData) {
-            // Prevent clicking the same found item
             if(element.classList.contains('found')) return; 
 
             if (itemData.isHealthy) {
-                // Correct!
                 element.classList.add('found');
                 speakWord(itemData.word);
                 
@@ -590,18 +590,15 @@
                 
                 updateScoreboard();
 
-                // 🏆 WIN CONDITION CHECK (First to 10 points)
                 if (player1Score >= GOAL_SCORE || player2Score >= GOAL_SCORE) {
                     setTimeout(() => triggerWinModal(currentPlayer), 500);
-                    return; // Stop the turn switch
+                    return; 
                 }
                 
-                // Switch turn
                 currentPlayer = currentPlayer === 1 ? 2 : 1;
                 updateScoreboard();
 
             } else {
-                // Incorrect
                 speakWord("Try again!");
                 element.style.transform = "translateX(-10px)";
                 setTimeout(() => element.style.transform = "translateX(10px)", 100);
@@ -609,17 +606,15 @@
             }
         }
 
-        // --- NEW MODAL WIN SEQUENCE ---
+        // --- MODAL WIN SEQUENCE ---
         function triggerWinModal(winningPlayer) {
-            playSuccessSound(); // Plays cheerful sound
-            shootConfetti();    // Triggers confetti
+            playSuccessSound(); 
+            shootConfetti();    
             
-            // Update Text
             const titleText = document.getElementById('win-title');
             titleText.innerText = `🎉 Congratulations Player ${winningPlayer}! 🎉`;
             speakWord(`Congratulations Player ${winningPlayer}! You are the Healthy Food Hero!`);
 
-            // Show Popup
             document.getElementById('win-modal').style.display = 'flex';
         }
 
@@ -641,7 +636,7 @@
         // Initialize on load
         window.onload = () => {
             buildVocab();
-            initFloatingBackground(); // 🌈 START BACKGROUND ANIMATION
+            initFloatingBackground(); 
         };
     </script>
 </body>
